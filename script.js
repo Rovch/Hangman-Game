@@ -11,7 +11,7 @@
 
 var bank = " ";
 var wordArray = [];
-
+counter = 0;
 
 function myFunction() {
 
@@ -24,6 +24,16 @@ function myFunction() {
     wordArray.push(bank.charAt(i));
   }
   console.log(wordArray);
+
+  counter++;
 }
 
 //I dont want any of the remaining code for the game to run unless the top function has already ran?????????
+//this is an example, The code below should "delete" the render of the form in the html, thus not allowing the user to input anymore info
+
+if (counter > 0) {
+  var myElement = document.getElementById("form1");
+  myElement.style.display = "none";
+} else {
+  console.log(counter);
+}
