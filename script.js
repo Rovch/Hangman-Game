@@ -48,12 +48,11 @@ function myFunction() {
 // function displayFunction() {
 //   var x = document.getElementById("form1");
 //   if (x.style.display === "none") {
-//     x.style.display = "block";
+//     x.style.display = "blocgk";
 //   } else {
 //     x.style.display = "none";
 //   }
 // }
-
 
 
 //player selector
