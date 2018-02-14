@@ -10,14 +10,20 @@
 </head>
 
 <body>
-
   <form id="form1">
     BankedWordOne:
-    <input type="text" id="inputContent" name="bank"/>
+    <input type="text" id="inputContent" name="bank" />
     <br>
     <input type="button" value="log" onclick="myFunction()">
   </form>
 
+
+  <div id="players">
+    <button onclick="onePlayer()"> Single Player </button>
+    <button onclick="twoPlayer()"> Multiplayer </button>
+    <div id="result"></div>
+    <br>
+  </div>
   <script src="script.js"></script>
 </body>
 
