@@ -8,14 +8,64 @@
 // 6. reset.
 //------------------------ PseudoCode ---------------------------//
 
+//deletes the form field after user submits hidden word
+// function displayFunction() {
+//   var x = document.getElementById("form1");
+//   if (x.style.display === "none") {
+//     x.style.display = "block";
+//   } else {
+//     x.style.display = "none";
+//   }
+// }
+
+
 //setting vars and arrays for below if else statements
 var wordArray = [];
 counter = 0;
+var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+  'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+  't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var cars = ["bmw", "audi", "honda", "toyota", "lexus", "volkswagon"];
 var food = ["chicken", "cheeseburger", "frys", "salad", "taco", "steak"];
 var animals = ["dog", "cat", "goat", "snake", "horse", "cow"];
 var correct = 0;
 var playerSelect = 0;
+
+var category = "";
+
+function buttons() {
+  for (var i = 0; i < alphabet.length; i++) {
+    var liCreator = document.createElement("LI");
+    liCreator.id = alphabet[i];
+    liCreator.className = "letters";
+    liCreator.innerHTML = alphabet[i];
+    document.getElementById("mylist").appendChild(liCreator);
+  }
+}
+
+
+function catIs() {
+  var catHeader = document.createElement("h1");
+  catHeader.innerHTML = "The category selected is " + category;
+  document.getElementById("catId").appendChild(catHeader);
+
+
+
+  for (var i = 0; i < wordArray.length; i++) {
+  var hiddenLetters = document.createElement("li");
+  hiddenLetters.className = "hiddenLetters";
+  hiddenLetters.innerHTML = "_";
+  document.getElementById("hiddenWord").appendChild(hiddenLetters);
+  }
+
+}
+
+function reset() {
+  window.location.reload();
+}
+
+
+
 
 
 
@@ -32,31 +82,16 @@ function myFunction() {
 
   //Retrieves the "input" entered by user in the html form and logs it
   category = document.getElementById("inputContent").value;
-  console.log(category)
+  // console.log(category)
 
   // for loop will run until its equal to the statement aboves .length, it then pushes each character to an array. Then logs it
   for (var i = 0; i < category.length; i++) {
     wordArray.push(category.charAt(i));
   }
+  console.log("Hidden word: " + wordArray.join("") );
   console.log(wordArray);
   counter++;
 };
-
-
-
-//deletes th form field after user submits hidden word
-// function displayFunction() {
-//   var x = document.getElementById("form1");
-//   if (x.style.display === "none") {
-//     x.style.display = "blocgk";
-//   } else {
-//     x.style.display = "none";
-//   }
-// }
-
-
-//player selector
-// displayFunction();
 
 var x = document.getElementById("form1");
 if (x.style.display === "none") {
@@ -65,11 +100,22 @@ if (x.style.display === "none") {
   x.style.display = "none";
 }
 
+var x = document.getElementById("cats");
+if (x.style.display === "none") {
+  x.style.display = "block";
+} else {
+  x.style.display = "none";
+}
+
 function onePlayer() {
   playerSelect = "1"
-  playerSelector();
-
-  // displayFunction();
+  console.log("Mode: SinglePlayer");
+  var x = document.getElementById("cats");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 
   var x = document.getElementById("players");
   if (x.style.display === "none") {
@@ -81,6 +127,7 @@ function onePlayer() {
 
 function twoPlayer() {
   playerSelect = "2"
+  console.log("Mode: MultiPlayer");
   playerSelector();
   var x = document.getElementById("players");
   if (x.style.display === "none") {
@@ -88,13 +135,31 @@ function twoPlayer() {
   } else {
     x.style.display = "none";
   }
+
 }
+
+function setCats(x) {
+  category = x;
+  playerSelector();
+
+  var x = document.getElementById("cats");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  catIs();
+  buttons();
+}
+
+
+
 
 //if statement for player 1, asked player to select a category then chooses a random word in the category
 function playerSelector() {
   if (playerSelect === "1") {
-    alert("player 1 has selected");
-    var category = prompt("please choose a category! Either cars, food, or animals");
+
+    // var category = prompt("please choose a category! Either cars, food, or animals");
 
     if (category === "cars") {
       var i = Math.floor(Math.random() * cars.length);
@@ -126,28 +191,43 @@ function playerSelector() {
 
   //if statement for player 2, lets player 1 input a word for player 2 to guess
   else if (playerSelect === "2") {
-    alert("player 2 was selected");
     myFunction();
   }
 
 }
 
-// var guess = prompt("guess dude!");
+
+var guess = " ";
+var correctLetters = [];
+var WrongLetters = [];
+
+function guessLink() {
+  guess = document.getElementById("guessInput").value;
+  guessEvaluate();
+  console.log(guess);
+}
+
+function guessEvaluate() {
+
+  if (wordArray.includes(guess) === true) {
+    correctLetters.push(guess);
+    console.log(correctLetters);
+
+  } else {
+    alert("wrong");
+    wrongLetters.push(guess);
+    console.log(correctLetters);
+  }
 
 
-// if (wordArray.includes(guess) === true) {
-//   console.log(guess);
-
-
-// } else {
-//   alert("wrong");
-// }
+}
 
 
 
 
 
 
+// ways to compare guess to an array
 // console.log(wordArray.indexOf(guess) > -1);
 // console.log(wordArray.includes(guess));
 

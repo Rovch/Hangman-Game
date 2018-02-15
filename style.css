@@ -1,0 +1,19 @@
+.letters {
+  list-style: none;
+  font-size: 30px;
+  height: 35px;
+  width:23px;
+  border: 1px solid purple;
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+}
+
+
+
+.hiddenLetters {
+  display: inline-block;
+  list-style: none;
+  margin: 10px;
+  font-size: 50px;
+}

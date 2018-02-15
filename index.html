@@ -12,18 +12,52 @@
 <body>
   <form id="form1">
     BankedWordOne:
-    <input type="text" id="inputContent" name="bank" />
+    <input type="text" id="inputContent" name="bank"  />
     <br>
     <input type="button" value="log" onclick="myFunction()">
   </form>
 
-
   <div id="players">
     <button onclick="onePlayer()"> Single Player </button>
     <button onclick="twoPlayer()"> Multiplayer </button>
-    <div id="result"></div>
-    <br>
   </div>
+
+  <div id="cats">
+    <button onclick="setCats('cars')"> Cars </button>
+    <button onclick="setCats('food')"> Food </button>
+    <button onclick="setCats('animals')"> animals </button>
+  </div>
+
+
+
+
+  <!-- <form id="formGuess">
+    Guess a letter!
+    <input type="text" id="guessInput" name="bank" />
+    <br>
+    <input type="button" value="log" onclick="guessLink()">
+  </form> -->
+
+
+  <div id="catId">
+
+  </div>
+
+  <ul id="hiddenWord">
+
+  </ul>
+
+
+
+  <ul id="mylist">
+
+  </ul>
+
+
+
+<button onclick="reset()"> RESET</button>
+
+
   <script src="script.js"></script>
 </body>
 
