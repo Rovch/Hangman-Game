@@ -37,6 +37,7 @@ function buttons() {
   for (var i = 0; i < alphabet.length; i++) {
     var liCreator = document.createElement("LI");
     liCreator.id = alphabet[i];
+    liCreator.setAttribute("onclick", "letterClick(this.id)");
     liCreator.className = "letters";
     liCreator.innerHTML = alphabet[i];
     document.getElementById("mylist").appendChild(liCreator);
@@ -50,15 +51,26 @@ function catIs() {
   document.getElementById("catId").appendChild(catHeader);
 
 
-
-  for (var i = 0; i < wordArray.length; i++) {
-  var hiddenLetters = document.createElement("li");
-  hiddenLetters.className = "hiddenLetters";
-  hiddenLetters.innerHTML = "_";
-  document.getElementById("hiddenWord").appendChild(hiddenLetters);
-  }
+  letterGuess();
+  // for (var i = 0; i < wordArray.length; i++) {
+  //   var hiddenLetters = document.createElement("li");
+  //   hiddenLetters.className = "hiddenLetters";
+  //   hiddenLetters.innerHTML = "_";
+  //   document.getElementById("hiddenWord").appendChild(hiddenLetters);
+  // }
 
 }
+
+function letterGuess() {
+  for (var i = 0; i < wordArray.length; i++) {
+    var hiddenLetters = document.createElement("li");
+    hiddenLetters.className = "hiddenLetters";
+    hiddenLetters.innerHTML = "_";
+    document.getElementById("hiddenWord").appendChild(hiddenLetters);
+  }
+}
+
+
 
 function reset() {
   window.location.reload();
@@ -88,7 +100,7 @@ function myFunction() {
   for (var i = 0; i < category.length; i++) {
     wordArray.push(category.charAt(i));
   }
-  console.log("Hidden word: " + wordArray.join("") );
+  console.log("Hidden word: " + wordArray.join(""));
   console.log(wordArray);
   counter++;
 };
@@ -136,6 +148,7 @@ function twoPlayer() {
     x.style.display = "none";
   }
 
+
 }
 
 function setCats(x) {
@@ -158,9 +171,6 @@ function setCats(x) {
 //if statement for player 1, asked player to select a category then chooses a random word in the category
 function playerSelector() {
   if (playerSelect === "1") {
-
-    // var category = prompt("please choose a category! Either cars, food, or animals");
-
     if (category === "cars") {
       var i = Math.floor(Math.random() * cars.length);
       console.log("category: " + category);
@@ -192,31 +202,32 @@ function playerSelector() {
   //if statement for player 2, lets player 1 input a word for player 2 to guess
   else if (playerSelect === "2") {
     myFunction();
+    letterGuess();
   }
 
 }
 
 
+
+function letterClick(x) {
+  guess = x;
+  guessEvaluate();
+}
+
 var guess = " ";
 var correctLetters = [];
-var WrongLetters = [];
-
-function guessLink() {
-  guess = document.getElementById("guessInput").value;
-  guessEvaluate();
-  console.log(guess);
-}
+var wrongLetters = [];
 
 function guessEvaluate() {
 
   if (wordArray.includes(guess) === true) {
     correctLetters.push(guess);
-    console.log(correctLetters);
+    console.log("Correct Guess of: " + guess);
 
   } else {
     alert("wrong");
     wrongLetters.push(guess);
-    console.log(correctLetters);
+    console.log("Incorrect Guess of: " + guess);
   }
 
 
