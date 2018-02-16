@@ -25,10 +25,11 @@ counter = 0;
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
   'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
   't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var cars = ["bmw", "audi", "honda", "toyota", "lexus", "volkswagon"];
-var food = ["chicken", "cheeseburger", "frys", "salad", "taco", "steak"];
+var cars = ["bmw", "audi", "honda", "datsun", "lexus", "fiat"];
+var food = ["pie", "bacon", "frys", "tuna", "taco", "steak"];
 var animals = ["dog", "cat", "goat", "snake", "horse", "cow"];
 var correct = 0;
+var wrong = 0;
 var playerSelect = 0;
 
 var category = "";
@@ -49,21 +50,17 @@ function catIs() {
   var catHeader = document.createElement("h1");
   catHeader.innerHTML = "The category selected is " + category;
   document.getElementById("catId").appendChild(catHeader);
-
-
   letterGuess();
-  // for (var i = 0; i < wordArray.length; i++) {
-  //   var hiddenLetters = document.createElement("li");
-  //   hiddenLetters.className = "hiddenLetters";
-  //   hiddenLetters.innerHTML = "_";
-  //   document.getElementById("hiddenWord").appendChild(hiddenLetters);
-  // }
-
 }
+
+
+logPlace = 0;
 
 function letterGuess() {
   for (var i = 0; i < wordArray.length; i++) {
     var hiddenLetters = document.createElement("li");
+    hiddenLetters.id = logPlace;
+    logPlace++;
     hiddenLetters.className = "hiddenLetters";
     hiddenLetters.innerHTML = "_";
     document.getElementById("hiddenWord").appendChild(hiddenLetters);
@@ -75,12 +72,6 @@ function letterGuess() {
 function reset() {
   window.location.reload();
 }
-
-
-
-
-
-
 
 function myFunction() {
 
@@ -147,8 +138,6 @@ function twoPlayer() {
   } else {
     x.style.display = "none";
   }
-
-
 }
 
 function setCats(x) {
@@ -164,9 +153,6 @@ function setCats(x) {
   catIs();
   buttons();
 }
-
-
-
 
 //if statement for player 1, asked player to select a category then chooses a random word in the category
 function playerSelector() {
@@ -208,10 +194,41 @@ function playerSelector() {
 }
 
 
+var found = "";
+var newGuess = "";
+
+
+function compare() {
+found = wordArray.indexOf(guess);
+console.log("letter index: " + found);
+}
+
+function replace() {
+  newGuess = document.getElementById(guess).innerHTML;
+  console.log("list item id: " + newGuess);
+}
+
+
+
+function replaceSpace() {
+var xyz = document.getElementById(found);
+xyz.innerHTML = newGuess;
+
+
+}
+
+
+
+
+
+
 
 function letterClick(x) {
   guess = x;
   guessEvaluate();
+  compare();
+  replace();
+  replaceSpace();
 }
 
 var guess = " ";
@@ -223,19 +240,76 @@ function guessEvaluate() {
   if (wordArray.includes(guess) === true) {
     correctLetters.push(guess);
     console.log("Correct Guess of: " + guess);
+    correct++;
+    correctF();
 
   } else {
     alert("wrong");
     wrongLetters.push(guess);
     console.log("Incorrect Guess of: " + guess);
+    wrong++;
+    console.log(wrong);
+    wrongF();
   }
-
-
 }
 
+function wrongF() {
+  if (wrong === 5) {
+    var winLose = document.getElementById("win/lose")
+    winLose.innerHTML = "You Lose!"
 
 
+    var x = document.getElementById("hiddenWord");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
 
+    var x = document.getElementById("catId");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+
+    var x = document.getElementById("mylist");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  } 
+}
+
+function correctF() {
+  if (correct === wordArray.length) {
+    var winLose = document.getElementById("win/lose")
+    winLose.innerHTML = "You Win!"
+
+
+    var x = document.getElementById("hiddenWord");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+
+    var x = document.getElementById("catId");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+
+    var x = document.getElementById("mylist");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  } 
+}
 
 
 // ways to compare guess to an array

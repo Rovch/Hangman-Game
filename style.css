@@ -1,3 +1,17 @@
+body {
+  background-color: rgb(224, 224, 224);
+}
+
+#players, #cats {
+  margin-top: 25%;
+}
+
+.catss {
+  margin: 10px 0 0 0;
+}
+
+
+
 .letters {
   list-style: none;
   font-size: 30px;
