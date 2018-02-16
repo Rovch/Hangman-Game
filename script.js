@@ -130,14 +130,14 @@ function onePlayer() {
 
 function twoPlayer() {
   playerSelect = "2"
-  console.log("Mode: MultiPlayer");
+  // console.log("Mode: MultiPlayer");
   playerSelector();
-  var x = document.getElementById("players");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+  // var x = document.getElementById("players");
+  // if (x.style.display === "none") {
+  //   x.style.display = "block";
+  // } else {
+  //   x.style.display = "none";
+  // }
 }
 
 function setCats(x) {
@@ -187,8 +187,9 @@ function playerSelector() {
 
   //if statement for player 2, lets player 1 input a word for player 2 to guess
   else if (playerSelect === "2") {
-    myFunction();
-    letterGuess();
+    // myFunction();
+    // letterGuess();
+    alert("under construction please choose single player");
   }
 
 }
@@ -216,11 +217,6 @@ xyz.innerHTML = newGuess;
 
 
 }
-
-
-
-
-
 
 
 function letterClick(x) {
